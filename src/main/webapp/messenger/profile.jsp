@@ -15,11 +15,6 @@
 </head>
 <body>
 <h3>Profile:</h3>
-<%--<% String login = (String)request.getSession().getAttribute("login");--%>
-<%--    User user = Storage.getStorage().getUsersLogins().get(login);%>--%>
-<%--<%=user.getLogin()%>--%>
-<%--<%=user.getName()%>--%>
-<%--<%=user.getBirthDay()%>--%>
 <br><c:out value="${sessionScope.profileInfo.login}"/>
 <br><c:out value="${sessionScope.profileInfo.name}"/>
 <br><c:out value="${sessionScope.profileInfo.birthDay}"/>

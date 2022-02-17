@@ -27,12 +27,6 @@
     </label>
     <button type="submit" name="submit" >submit</button>
         </form>
-
-<%--if (error!=null) {--%>
-<%--    response.getWriter().write(error);--%>
-<%--request.setAttribute("errorUp",null);--%>
-<%--};--%>
-<%--<%String error = (String)request.getAttribute("errorUp");%>--%>
 <c:if test="${requestScope.errorUp!=null}">
     <c:out value="${requestScope.errorUp}"/>
     <c:set var="errorUp" scope="request" value="${null}"/>

@@ -27,13 +27,6 @@
 <form action="<c:url value="/messenger/startPage.jsp"/>">
     <button type="submit">back</button>
 </form>
-<%--<%--%>
-<%--    String error = (String) request.getAttribute("errorIn");--%>
-<%--    if (error != null) {--%>
-<%--        response.getWriter().write(error);--%>
-<%--        request.setAttribute("errorIn", null);--%>
-<%--    };--%>
-<%--%>--%>
 <c:if test="${requestScope.errorIn!=null}">
     <c:out value="${requestScope.errorIn}"/>
     <c:set var="errorIn" scope="request" value="${null}"/>

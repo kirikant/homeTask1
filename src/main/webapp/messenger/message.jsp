@@ -3,13 +3,7 @@
 <%@ page import="project.dto.Message" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %><%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 10.02.2022
-  Time: 13:04
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
