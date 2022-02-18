@@ -18,6 +18,7 @@
 <br><c:out value="${sessionScope.profileInfo.login}"/>
 <br><c:out value="${sessionScope.profileInfo.name}"/>
 <br><c:out value="${sessionScope.profileInfo.birthDay}"/>
+<form method="get" action="<c:url value="/statistics"/>" ><button type="submit">statistics</button></form>
 <form method="get" action="<c:url value="/chats"/>" ><button type="submit">chats</button></form>
 <form action="<c:url value="/messenger/message.jsp"/>" ><button type="submit">send message</button></form>
 <form action="<c:url value="/messenger/startPage.jsp"/>" ><button type="submit">sign out</button></form>

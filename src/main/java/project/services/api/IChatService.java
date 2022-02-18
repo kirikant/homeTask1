@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 public interface IChatService {
     void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
      void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
-  void viewProfile(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException;
+  void viewProfile(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException;
     void createMessage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
     void viewChats(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 
