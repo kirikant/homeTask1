@@ -1,5 +1,8 @@
 package project.services;
 
+import project.services.api.IChatService;
+import project.services.api.IStatisticsService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class StatisticsService {
+public class StatisticsService implements IStatisticsService {
     private static StatisticsService statisticsService = new StatisticsService();
     private AtomicInteger sessionCounter = new AtomicInteger(0);
     private Storage storage = Storage.getStorage();
