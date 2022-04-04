@@ -4,7 +4,6 @@ package project.services;
 import project.services.api.IStatisticsService;
 import project.storages.StorageFactory;
 import project.storages.api.IChatStorageWithAudit;
-import project.storages.api.IStorage;
 
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,13 +16,12 @@ public class StatisticsService implements IStatisticsService {
 
     private StatisticsService() {
     }
+    public static StatisticsService getStatisticsService() {
+        return statisticsService;
+    }
 
     public AtomicInteger getSessionCounter() {
         return sessionCounter;
-    }
-
-    public static StatisticsService getStatisticsService() {
-        return statisticsService;
     }
 
     public void addSession() {

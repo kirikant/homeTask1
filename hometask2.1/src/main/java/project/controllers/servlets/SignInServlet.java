@@ -3,6 +3,7 @@ package project.controllers.servlets;
 
 import project.dto.User;
 import project.services.ChatService;
+import project.services.api.IChatService;
 
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @WebServlet(name = "SignInServlet", urlPatterns = "/signIn")
 public class SignInServlet extends HttpServlet {
 
-    private ChatService chatService = ChatService.getChatService();
+    private IChatService chatService = ChatService.getChatService();
     private final String URL_PROFILE ="/messenger/profile.jsp";
     private final String URL_SIGN_IN = "/messenger/signIn.jsp";
 

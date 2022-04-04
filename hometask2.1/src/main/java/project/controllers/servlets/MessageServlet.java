@@ -2,6 +2,7 @@ package project.controllers.servlets;
 
 import project.dto.Message;
 import project.services.ChatService;
+import project.services.api.IChatService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @WebServlet(name = "Message", urlPatterns = "/message")
 public class MessageServlet extends HttpServlet {
 
-    private ChatService chatService = ChatService.getChatService();
+    private IChatService chatService = ChatService.getChatService();
     private final String URL_PROFILE ="/messenger/profile.jsp";
     private final String URL_MESSAGE ="/messenger/message.jsp";
 

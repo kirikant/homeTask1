@@ -10,7 +10,6 @@ import project.entity.UserEntity;
 import project.services.api.IChatService;
 import project.storages.StorageFactory;
 import project.storages.api.IChatStorageWithAudit;
-import project.storages.api.IStorage;
 import project.utils.api.ITransformer;
 import project.utils.transformers.AuditTransformer;
 import project.utils.transformers.MessageTransformer;
@@ -54,6 +53,7 @@ public class ChatService implements IChatService {
                 auditTransformer.dtoToEntity(auditUser));
     }
 
+   @Override
     public List<AuditUser> getUserAudits(User user) {
         return auditTransformer.listEntityToListDto(storage
                 .getUserAudits(userTransformer.dtoToEntity(user)));

@@ -1,6 +1,7 @@
 package project.controllers.servlets;
 
 import project.services.StatisticsService;
+import project.services.api.IStatisticsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,7 @@ import java.io.IOException;
 @WebServlet (name = "StatisticsServlet", urlPatterns = "/statistics")
 public class StatisticsServlet extends HttpServlet {
 
-   private StatisticsService statisticsService = StatisticsService.getStatisticsService();
+   private IStatisticsService statisticsService = StatisticsService.getStatisticsService();
    private final String URL_STATISTICS="/messenger/statistics.jsp";
 
     @Override

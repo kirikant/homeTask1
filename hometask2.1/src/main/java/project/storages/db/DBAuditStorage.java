@@ -3,6 +3,8 @@ package project.storages.db;
 import project.entity.AuditUserEntity;
 import project.entity.UserEntity;
 import project.storages.api.IAuditStorage;
+import project.storages.api.IStorage;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class DBAuditStorage implements IAuditStorage<Connection> {
     private static DBAuditStorage databaseDBStorage = new DBAuditStorage();
-    private DBStorage dbStorage = DBStorage.getDatabaseStorage();
+    private IStorage<Connection> dbStorage = DBStorage.getDatabaseStorage();
 
     private DBAuditStorage() {
     }

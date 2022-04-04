@@ -4,6 +4,7 @@ import project.dto.Message;
 import project.dto.Pageable;
 import project.dto.User;
 import project.services.ChatService;
+import project.services.api.IChatService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ import java.util.Objects;
 @WebServlet(name = "ChatsServlet", urlPatterns = "/chats")
 public class ChatsServlet extends HttpServlet {
 
-    private ChatService chatService = ChatService.getChatService();
+    private IChatService chatService = ChatService.getChatService();
     private final String URL_CHATS = "/messenger/chats.jsp";
 
     @Override

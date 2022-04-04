@@ -2,6 +2,7 @@ package project.controllers.servlets;
 
 import project.dto.User;
 import project.services.ChatService;
+import project.services.api.IChatService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet (name = "AuditServlet", urlPatterns = "/audit")
 public class AuditServlet extends HttpServlet {
-    private ChatService chatService = ChatService.getChatService();
+    private IChatService chatService = ChatService.getChatService();
     private final String URL_AUDIT = "/messenger/audit.jsp";
 
     @Override

@@ -4,6 +4,7 @@ import project.dto.Pageable;
 import project.entity.AuditUserEntity;
 import project.entity.MessageEntity;
 import project.entity.UserEntity;
+import project.storages.api.IAuditStorage;
 import project.storages.api.IChatStorageWithAudit;
 import project.utils.EntityFactoryInitializer;
 
@@ -18,7 +19,7 @@ public class HibChatStorageWithAudit implements IChatStorageWithAudit {
     }
 
     private HibStorage hibStorage = HibStorage.getHibStorage();
-    private HibAuditStorage hibAuditStorage = HibAuditStorage.getHibAuditStorage();
+    private IAuditStorage<EntityManager> hibAuditStorage = HibAuditStorage.getHibAuditStorage();
 
     private static HibChatStorageWithAudit hibChatStorageWithAudit = new HibChatStorageWithAudit();
 

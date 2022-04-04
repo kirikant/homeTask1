@@ -4,9 +4,10 @@ import project.dto.Pageable;
 import project.entity.AuditUserEntity;
 import project.entity.MessageEntity;
 import project.entity.UserEntity;
+import project.storages.api.IAuditStorage;
 import project.storages.api.IChatStorageWithAudit;
+import project.storages.api.IStorage;
 import project.utils.DBInitializer;
-import project.utils.EntityFactoryInitializer;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,8 +15,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DBChatStorageWithAudit implements IChatStorageWithAudit {
-    private DBStorage dbStorage = DBStorage.getDatabaseStorage();
-    private DBAuditStorage dbAuditStorage = DBAuditStorage.getDatabaseAuditStorage();
+    private IStorage<Connection> dbStorage = DBStorage.getDatabaseStorage();
+    private IAuditStorage dbAuditStorage = DBAuditStorage.getDatabaseAuditStorage();
     private static DBChatStorageWithAudit dbChatStorageWithAudit = new DBChatStorageWithAudit();
     private DataSource dataSource;
 
