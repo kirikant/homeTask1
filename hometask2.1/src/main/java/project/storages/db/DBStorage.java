@@ -44,9 +44,9 @@ public class DBStorage implements IStorage<Connection> {
         try (PreparedStatement preparedStatement1 = connection
                 .prepareStatement(Commands.GET_USER.value)) {
             preparedStatement1.setString(1, message.getLoginReceiver().getLogin());
-            ResultSet resultSet = preparedStatement1.executeQuery();
-            if (resultSet.next()) id = resultSet.getLong(1);
-            resultSet.close();
+            try(ResultSet resultSet = preparedStatement1.executeQuery()) {
+               if (resultSet.next()) id = resultSet.getLong(1);
+           }
         } catch (SQLException e) {
             e.printStackTrace();
         }
