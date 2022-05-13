@@ -43,26 +43,38 @@ public class HibStorage implements IStorage<EntityManager> {
     @Override
     public long getUsersNumber() {
         EntityManager entityManager = factoryInitializer.getEntityManager();
-        entityManager.getTransaction().begin();
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<UserEntity> query1 = cb.createQuery(UserEntity.class);
-        Root<UserEntity> from = query1.from(UserEntity.class);
-        long size = entityManager.createQuery(query1).getResultList().size();
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        long size = 0;
+        try {
+            entityManager.getTransaction().begin();
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<UserEntity> query1 = cb.createQuery(UserEntity.class);
+            Root<UserEntity> from = query1.from(UserEntity.class);
+            size = entityManager.createQuery(query1).getResultList().size();
+            entityManager.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            entityManager.close();
+        }
         return size;
     }
 
     @Override
     public long getMessagesNumber() {
         EntityManager entityManager = factoryInitializer.getEntityManager();
-        entityManager.getTransaction().begin();
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<MessageEntity> query1 = cb.createQuery(MessageEntity.class);
-        Root<MessageEntity> from = query1.from(MessageEntity.class);
-        long size = entityManager.createQuery(query1).getResultList().size();
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        long size=0;
+        try {
+            entityManager.getTransaction().begin();
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<MessageEntity> query1 = cb.createQuery(MessageEntity.class);
+            Root<MessageEntity> from = query1.from(MessageEntity.class);
+            size = entityManager.createQuery(query1).getResultList().size();
+            entityManager.getTransaction().commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
         return size;
     }
 
@@ -74,20 +86,25 @@ public class HibStorage implements IStorage<EntityManager> {
     @Override
     public List<MessageEntity> getUserMessages(UserEntity userEntity, Pageable pageable) {
         EntityManager entityManager = factoryInitializer.getEntityManager();
-        UserEntity user = hibStorage.getUser(userEntity.getLogin());
-        entityManager.getTransaction().begin();
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<MessageEntity> query1 = cb.createQuery(MessageEntity.class);
-        Root<MessageEntity> from = query1.from(MessageEntity.class);
-        CriteriaQuery<MessageEntity> loginReceiver = query1
-                .select(from)
-                .where(cb.equal(from.get("loginReceiver"), user));
-        TypedQuery<MessageEntity> query = entityManager.createQuery(loginReceiver);
-       query.setFirstResult(pageable.getAmount() * (pageable.getPage() - 1));
-        query.setMaxResults(pageable.getAmount());
-        List<MessageEntity> resultList = query.getResultList();
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        List<MessageEntity> resultList = null;
+        try{ UserEntity user = hibStorage.getUser(userEntity.getLogin());
+            entityManager.getTransaction().begin();
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<MessageEntity> query1 = cb.createQuery(MessageEntity.class);
+            Root<MessageEntity> from = query1.from(MessageEntity.class);
+            CriteriaQuery<MessageEntity> loginReceiver = query1
+                    .select(from)
+                    .where(cb.equal(from.get("loginReceiver"), user));
+            TypedQuery<MessageEntity> query = entityManager.createQuery(loginReceiver);
+            query.setFirstResult(pageable.getAmount() * (pageable.getPage() - 1));
+            query.setMaxResults(pageable.getAmount());
+            resultList = query.getResultList();
+            entityManager.getTransaction().commit();}
+        catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
         return resultList;
     }
 
@@ -99,10 +116,16 @@ public class HibStorage implements IStorage<EntityManager> {
 
     public UserEntity getUser(String login) {
         EntityManager entityManager = factoryInitializer.getEntityManager();
-        entityManager.getTransaction().begin();
-        UserEntity userEntity =  getUser(login,entityManager);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        UserEntity userEntity = null;
+        try {
+            entityManager.getTransaction().begin();
+            userEntity =  getUser(login,entityManager);
+            entityManager.getTransaction().commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            entityManager.close();
+        }
         return userEntity;
     }
 
@@ -118,4 +141,5 @@ public class HibStorage implements IStorage<EntityManager> {
         UserEntity userEntity = resultList1.get(0);
         return userEntity;
     }
+
 }
